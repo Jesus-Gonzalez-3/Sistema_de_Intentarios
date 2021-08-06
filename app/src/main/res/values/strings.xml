@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Cotiz_Gaona_Jesus</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Sistema de Cotizaciones Vehiculares</string>
+    <string name="nav_header_subtitle">18002941@alumnos.utleon.edu.mx</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Empleado</string>
+    <string name="menu_slideshow">Vehiculos</string>
+    <string name="menu_cotizaciones">Cotizaciones</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Bienvenido Usuario</string>
+    <string name="nav_header_body">Jesús Guadalupe Gaona González</string>
+</resources>
