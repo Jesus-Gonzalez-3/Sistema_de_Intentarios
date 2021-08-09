@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +17,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.idgs902.cotiz_gaona_jesus.R;
-import com.idgs902.cotiz_gaona_jesus.databinding.FragmentEmpleadosBinding;
-import com.idgs902.cotiz_gaona_jesus.ui.cliente.ClienteFragment;
+import com.idgs902.cotiz_gaona_jesus.databinding.FragmentVendedoresBinding;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -42,9 +38,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpleadosFragment extends Fragment {
+public class VendedoresFragment extends Fragment {
 
-    private FragmentEmpleadosBinding binding;
+    private FragmentVendedoresBinding binding;
     private Button btnAgregarE, btnBuscarE, btnGenerarE;
     private TextInputEditText etBusquedaE;
     private TextView txtE;
@@ -53,15 +49,15 @@ public class EmpleadosFragment extends Fragment {
 
     static final String DATOS = "Datos";
     private final static String NOMBRE_DIRECTORIO = "MiPdf";
-    private final static String NOMBRE_DOCUMENTO = "Empleados.pdf";
+    private final static String NOMBRE_DOCUMENTO = "Vendedores.pdf";
     private final static String ETIQUETA_ERROR = "ERROR";
 
     private static boolean creado = false;
-    private List<Empleado> lista = new ArrayList<Empleado>();
+    private List<Vendedor> lista = new ArrayList<Vendedor>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentEmpleadosBinding.inflate(inflater, container, false);
+        binding = FragmentVendedoresBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         btnAgregarE = root.findViewById(R.id.btnAgregarE);
         btnBuscarE = root.findViewById(R.id.btnBuscarE);
@@ -70,22 +66,25 @@ public class EmpleadosFragment extends Fragment {
         btnGenerarE = root.findViewById(R.id.btnReporteE);
 
         try {
-            db = getActivity().openOrCreateDatabase("CotizacionesDB", Context.MODE_PRIVATE, null);
+            db = getActivity().openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
 
-            Cursor c = db.rawQuery("SELECT * FROM empleado;", null);
+            Cursor c = db.rawQuery("SELECT * FROM vendedor;", null);
             if (c.getCount() != 0) {
                 c.moveToFirst();
                 StringBuilder cadena = new StringBuilder();
 
                 for (int i = 0; i < c.getCount(); i++) {
 
-                    Empleado em = new Empleado();
-                    em.setClave(c.getString(0));
-                    em.setNombre(c.getString(1));
-                    em.setPuesto(c.getString(2));
-                    em.setFecha(c.getString(3));
+                    Vendedor ven = new Vendedor();
+                    ven.setId(String.valueOf(c.getInt(0)));
+                    ven.setNombre(c.getString(1));
+                    ven.setCalle(c.getString(2));
+                    ven.setColonia(c.getString(3));
+                    ven.setTelefono(c.getString(4));
+                    ven.setEmail(c.getString(5));
+                    ven.setComisiones(c.getString(6));
 
-                    lista.add(em);
+                    lista.add(ven);
                     for (int j = 0; j < c.getColumnCount(); j++) {
                         cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
                     }
@@ -103,8 +102,8 @@ public class EmpleadosFragment extends Fragment {
         btnAgregarE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), EmpleadosActivity.class);
-                startActivity(i);
+                Intent i = new Intent(getContext(), VendedoresActivity.class);
+                startActivityForResult(i,1, new Bundle());
             }
         });
 
@@ -113,10 +112,10 @@ public class EmpleadosFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     if (etBusquedaE.getText() != null && etBusquedaE.getText().toString() != " ") {
-                        Intent i = new Intent(getContext(), EmpleadosActivity2.class);
+                        Intent i = new Intent(getContext(), VendedoresActivity2.class);
 
                         i.putExtra(DATOS, etBusquedaE.getText().toString());
-                        startActivity(i);
+                        startActivityForResult(i, 1, new Bundle());
                     } else {
                         showMessage("Error", "Tiene que ingresar una clave para busqueda");
                     }
@@ -154,6 +153,46 @@ public class EmpleadosFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        txtE.setText("");
+        try {
+            db = getActivity().openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
+
+            Cursor c = db.rawQuery("SELECT * FROM vendedor;", null);
+            if (c.getCount() != 0) {
+                c.moveToFirst();
+                StringBuilder cadena = new StringBuilder();
+
+                for (int i = 0; i < c.getCount(); i++) {
+
+                    Vendedor ven = new Vendedor();
+                    ven.setId(String.valueOf(c.getInt(0)));
+                    ven.setNombre(c.getString(1));
+                    ven.setCalle(c.getString(2));
+                    ven.setColonia(c.getString(3));
+                    ven.setTelefono(c.getString(4));
+                    ven.setEmail(c.getString(5));
+                    ven.setComisiones(c.getString(6));
+
+                    lista.add(ven);
+                    for (int j = 0; j < c.getColumnCount(); j++) {
+                        cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
+                    }
+                    cadena.append('\n');
+                    cadena.append('\n');
+                    c.moveToNext();
+                }
+                txtE.setText(cadena);
+
+            }
+        } catch (
+                Exception ex) {
+            showMessage("Error", ex.getMessage());
+        }
+    }
+
     public void generarPdf() {
 
         // Creamos el documento.
@@ -173,9 +212,9 @@ public class EmpleadosFragment extends Fragment {
 
             // Incluimos el pie de pagina y una cabecera
             HeaderFooter cabecera = new HeaderFooter(new Phrase(
-                    "Cotizaciones Jesus Gaona"), false);
+                    "Sistema de Inventarios Zapateria Jessi"), false);
             HeaderFooter pie = new HeaderFooter(new Phrase(
-                    "Desarrollo Para Dispositivos Inteligentes \t\t\t  "), false);
+                    "Desarrollado por: \t Jessica Anahi Muñoz\t Jesus Guadalupe Gaona\t  "), false);
 
             documento.setHeader(cabecera);
             documento.setFooter(pie);
@@ -185,21 +224,31 @@ public class EmpleadosFragment extends Fragment {
 
             Font font = FontFactory.getFont(FontFactory.HELVETICA, "", 28, Color.BLACK);
             // Añadimos un titulo con la fuente por defecto.
-            Paragraph p = new Paragraph("Empleados", font);
+            Paragraph p = new Paragraph("Vendedores\n", font);
             p.setAlignment(Element.ALIGN_CENTER);
             documento.add(p);
 
+            Paragraph p2 = new Paragraph(" ", font);
+            p2.setAlignment(Element.ALIGN_CENTER);
+            documento.add(p2);
+
             // Insertamos una tabla.
-            PdfPTable tabla = new PdfPTable(4);
-            tabla.addCell("Clave");
+            PdfPTable tabla = new PdfPTable(7);
+            tabla.addCell("ID");
             tabla.addCell("Nombre");
-            tabla.addCell("Puesto");
-            tabla.addCell("Fecha Ingreso");
+            tabla.addCell("Calle");
+            tabla.addCell("Colonia");
+            tabla.addCell("Teléfono");
+            tabla.addCell("Email");
+            tabla.addCell("Comisiones");
             for (int i = 0; i < lista.size(); i++) {
-                tabla.addCell(lista.get(i).clave);
+                tabla.addCell(lista.get(i).Id);
                 tabla.addCell(lista.get(i).nombre);
-                tabla.addCell(lista.get(i).puesto);
-                tabla.addCell(lista.get(i).fecha);
+                tabla.addCell(lista.get(i).calle);
+                tabla.addCell(lista.get(i).colonia);
+                tabla.addCell(lista.get(i).telefono);
+                tabla.addCell(lista.get(i).email);
+                tabla.addCell(lista.get(i).comisiones);
             }
             documento.add(tabla);
 
@@ -228,7 +277,6 @@ public class EmpleadosFragment extends Fragment {
             if (!fichero.exists()) { // Si no existe, crea el archivo.
                 try {
                     creado = fichero.createNewFile();
-                    showMessage("Info", String.valueOf(creado));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -242,21 +290,24 @@ public class EmpleadosFragment extends Fragment {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
     }
 
-    public class Empleado {
-        String clave;
+    public class Vendedor {
+        String Id;
         String nombre;
-        String puesto;
-        String fecha;
+        String calle;
+        String colonia;
+        String telefono;
+        String email;
+        String comisiones;
 
-        public Empleado() {
+        public Vendedor() {
         }
 
-        public String getClave() {
-            return clave;
+        public String getId() {
+            return Id;
         }
 
-        public void setClave(String clave) {
-            this.clave = clave;
+        public void setId(String id) {
+            Id = id;
         }
 
         public String getNombre() {
@@ -267,20 +318,44 @@ public class EmpleadosFragment extends Fragment {
             this.nombre = nombre;
         }
 
-        public String getPuesto() {
-            return puesto;
+        public String getCalle() {
+            return calle;
         }
 
-        public void setPuesto(String puesto) {
-            this.puesto = puesto;
+        public void setCalle(String calle) {
+            this.calle = calle;
         }
 
-        public String getFecha() {
-            return fecha;
+        public String getColonia() {
+            return colonia;
         }
 
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
+        public void setColonia(String colonia) {
+            this.colonia = colonia;
+        }
+
+        public String getTelefono() {
+            return telefono;
+        }
+
+        public void setTelefono(String telefono) {
+            this.telefono = telefono;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getComisiones() {
+            return comisiones;
+        }
+
+        public void setComisiones(String comisiones) {
+            this.comisiones = comisiones;
         }
     }
 }

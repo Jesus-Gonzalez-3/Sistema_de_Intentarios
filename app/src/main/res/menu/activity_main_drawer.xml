@@ -18,8 +18,8 @@
             android:title="@string/menu_slideshow" />
         <item
             android:id="@+id/nav_cotizaciones"
-            android:icon="@drawable/ic_dvr_black_48dp"
-            android:title="Cotizaciones" />
+            android:icon="@drawable/trainers_shoes_5694"
+            android:title="@string/menu_cotizaciones" />
         <item
             android:id="@+id/nav_clientes"
             android:icon="@drawable/ic_assignment_ind_black_48dp"

@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +15,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.idgs902.cotiz_gaona_jesus.R;
 import com.idgs902.cotiz_gaona_jesus.databinding.FragmentVehiculoBinding;
-import com.idgs902.cotiz_gaona_jesus.ui.empleados.EmpleadosActivity;
-import com.idgs902.cotiz_gaona_jesus.ui.empleados.EmpleadosActivity2;
-import com.idgs902.cotiz_gaona_jesus.ui.empleados.EmpleadosFragment;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;

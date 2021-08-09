@@ -15,10 +15,10 @@
         android:theme="@style/Theme.Cotiz_Gaona_Jesus">
         <activity android:name=".ui.vehiculos.VehiculosActivity2"/>
         <activity android:name=".ui.vehiculos.VehiculosActivity" />
-        <activity android:name=".ui.empleados.EmpleadosActivity2" />
-        <activity android:name=".ui.empleados.EmpleadosActivity" />
-        <activity android:name=".ui.cotizacion.CotizacionesActivity2" />
-        <activity android:name=".ui.cotizacion.CotizacionesActivity" />
+        <activity android:name=".ui.empleados.VendedoresActivity2" />
+        <activity android:name=".ui.empleados.VendedoresActivity" />
+        <activity android:name=".ui.cotizacion.ProductosActivity2" />
+        <activity android:name=".ui.cotizacion.ProductosActivity" />
         <activity android:name=".ui.cliente.ClienteActivity2" />
         <activity android:name=".ui.cliente.ClienteActivity" />
         <activity

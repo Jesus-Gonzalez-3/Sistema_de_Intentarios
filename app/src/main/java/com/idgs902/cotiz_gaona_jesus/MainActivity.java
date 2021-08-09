@@ -66,17 +66,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            db = openOrCreateDatabase("CotizacionesDB", Context.MODE_PRIVATE, null);
-            db.execSQL("CREATE TABLE IF NOT EXISTS cliente (" +
-                    "clave Varchar, nombre Varchar, direccion Varchar, fechaRegistro Varchar);");
-            db.execSQL("CREATE TABLE IF NOT EXISTS empleado (" +
-                    "clave Varchar, nombre Varchar, puesto Varchar, fechaIngreso Varchar);");
-            db.execSQL("CREATE TABLE IF NOT EXISTS vehiculo (" +
-                    "clave Varchar, nombre Varchar, marca Varchar, modelo Varchar, costo Varchar);");
-            db.execSQL("CREATE TABLE IF NOT EXISTS cotizacion (" +
-                    "clave Varchar, fecha Varchar, vendedor Varchar, cliente Varchar, vehiculo Varchar," +
-                    "costo Varchar,enganchePorcentaje Varchar, enganche Varchar," +
-                    "plazo Varchar, tasaInteres Varchar, tasaAnual Varchar);");
+            db = openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
+            db.execSQL("CREATE TABLE IF NOT EXISTS vendedor (" +
+                    "id INTEGER PRIMARY KEY, nombre Varchar, calle Varchar, colonia Varchar, telefono Varchar, email Varchar, comisiones Varchar);");
+            db.execSQL("CREATE TABLE IF NOT EXISTS producto (" +
+                    "id INTEGER PRIMARY KEY, clave Varchar, nombre Varchar, linea Varchar, existencia Varchar, Pcosto Varchar, PCpromedio Varchar, PMenudeo Varchar, PMayoreo Varchar);");
         } catch (Exception ex) {
             showMessage("Error", ex.getMessage());
         }

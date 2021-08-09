@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_empleado"
-        android:name="com.idgs902.cotiz_gaona_jesus.ui.empleados.EmpleadosFragment"
+        android:name="com.idgs902.cotiz_gaona_jesus.ui.empleados.VendedoresFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_empleados" />
+        tools:layout="@layout/fragment_vendedores" />
 
     <fragment
         android:id="@+id/nav_vehiculos"
@@ -24,9 +24,8 @@
         tools:layout="@layout/fragment_vehiculo" />
     <fragment
         android:id="@+id/nav_cotizaciones"
-        android:name="com.idgs902.cotiz_gaona_jesus.ui.cotizacion.CotizacionesFragment"
-        android:label="Cotizaciones"
-        tools:layout="@layout/fragment_cotizaciones" />
+        android:name="com.idgs902.cotiz_gaona_jesus.ui.cotizacion.ProductosFragment"
+        android:label="@string/menu_cotizaciones" />
     <fragment
         android:id="@+id/nav_clientes"
         android:name="com.idgs902.cotiz_gaona_jesus.ui.cliente.ClienteFragment"
