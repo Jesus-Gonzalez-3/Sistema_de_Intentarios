@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.idgs902.cotiz_gaona_jesus.R;
-import com.idgs902.cotiz_gaona_jesus.databinding.FragmentVehiculoBinding;
+import com.idgs902.cotiz_gaona_jesus.databinding.FragmentProveedorBinding;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -37,50 +37,55 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehiculoFragment extends Fragment {
+public class ProveedorFragment extends Fragment {
 
-    private Button btnAgregarV, btnBuscarV, btnGenerarV;
-    private TextInputEditText etBusquedaV;
-    private TextView txtV;
+    private Button btnAgregarP, btnBuscarP, btnGenerarP;
+    private TextInputEditText etBusquedaP;
+    private TextView txtP;
 
     private SQLiteDatabase db;
 
     static final String DATOS = "Datos";
-    private FragmentVehiculoBinding binding;
+    private FragmentProveedorBinding binding;
     private final static String NOMBRE_DIRECTORIO = "MiPdf";
     private final static String NOMBRE_DOCUMENTO = "Vehiculos.pdf";
     private final static String ETIQUETA_ERROR = "ERROR";
 
     private static boolean creado = false;
-    private List<Vehiculo> lista = new ArrayList<Vehiculo>();
+    private List<Proveedor> lista = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentVehiculoBinding.inflate(inflater, container, false);
+        binding = FragmentProveedorBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        btnAgregarV = root.findViewById(R.id.btnAgregarV);
-        btnBuscarV = root.findViewById(R.id.btnBuscarV);
-        btnGenerarV = root.findViewById(R.id.btnReporteV);
-        etBusquedaV = root.findViewById(R.id.etBusquedaV);
-        txtV = root.findViewById(R.id.txtV);
+        btnAgregarP = root.findViewById(R.id.btnAgregarPr);
+        btnBuscarP = root.findViewById(R.id.btnBuscarPr);
+        btnGenerarP = root.findViewById(R.id.btnReportePr);
+        etBusquedaP = root.findViewById(R.id.etBusquedaPr);
+        txtP = root.findViewById(R.id.txtPr);
 
         try {
-            db = getActivity().openOrCreateDatabase("CotizacionesDB", Context.MODE_PRIVATE, null);
+            db = getActivity().openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
 
-            Cursor c = db.rawQuery("SELECT * FROM vehiculo;", null);
+            Cursor c = db.rawQuery("SELECT * FROM proveedor;", null);
             if (c.getCount() != 0) {
                 c.moveToFirst();
                 StringBuilder cadena = new StringBuilder();
 
                 for (int i = 0; i < c.getCount(); i++) {
-                    Vehiculo v = new Vehiculo();
-                    v.setClave(c.getString(0));
-                    v.setNombre(c.getString(1));
-                    v.setMarca(c.getString(2));
-                    v.setModelo(c.getString(3));
-                    v.setCosto(c.getString(4));
-                    lista.add(v);
+                    Proveedor prv = new Proveedor();
+                    prv.setClave(c.getString(0));
+                    prv.setNombre(c.getString(1));
+                    prv.setCalle(c.getString(2));
+                    prv.setColonia(c.getString(3));
+                    prv.setCiudad(c.getString(4));
+                    prv.setRfc(c.getString(5));
+                    prv.setTelefono(c.getString(6));
+                    prv.setEmail(c.getString(7));
+                    prv.setSaldo(c.getString(8));
+
+                    lista.add(prv);
                     for (int j = 0; j < c.getColumnCount(); j++) {
                         cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
                     }
@@ -88,22 +93,22 @@ public class VehiculoFragment extends Fragment {
                     cadena.append('\n');
                     c.moveToNext();
                 }
-                txtV.setText(cadena);
+                txtP.setText(cadena);
 
             }
         } catch (
                 Exception ex) {
             showMessage("Error", ex.getMessage());
         }
-        btnAgregarV.setOnClickListener(new View.OnClickListener() {
+        btnAgregarP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), VehiculosActivity.class);
+                Intent i = new Intent(getContext(), ProveedorActivity.class);
                 startActivity(i);
             }
         });
 
-        btnGenerarV.setOnClickListener(new View.OnClickListener() {
+        btnGenerarP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -115,17 +120,17 @@ public class VehiculoFragment extends Fragment {
             }
         });
 
-        btnBuscarV.setOnClickListener(new View.OnClickListener() {
+        btnBuscarP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    if (etBusquedaV.getText() != null && etBusquedaV.getText().toString() != " ") {
-                        Intent i = new Intent(getContext(), VehiculosActivity2.class);
+                    if (etBusquedaP.getText() != null && etBusquedaP.getText().toString() != " ") {
+                        Intent i = new Intent(getContext(), ProveedorActivity2.class);
 
-                        i.putExtra(DATOS, etBusquedaV.getText().toString());
+                        i.putExtra(DATOS, etBusquedaP.getText().toString());
                         startActivity(i);
                     } else {
-                        showMessage("Error", "Tiene que ingresar una clave para busqueda");
+                        showMessage("Error", "Tiene que ingresar una No. para busqueda");
                     }
 
                 } catch (Exception ex) {
@@ -169,9 +174,9 @@ public class VehiculoFragment extends Fragment {
 
             // Incluimos el pie de pagina y una cabecera
             HeaderFooter cabecera = new HeaderFooter(new Phrase(
-                    "Cotizaciones Jesus Gaona"), false);
+                    "Sistema de Inventarios Zapateria Jessi"), false);
             HeaderFooter pie = new HeaderFooter(new Phrase(
-                    "Desarrollo Para Dispositivos Inteligentes \t\t\t  "), false);
+                    "Desarrollado por: \t Jessica Anahi Muñoz\t Jesus Guadalupe Gaona\t  "), false);
 
             documento.setHeader(cabecera);
             documento.setFooter(pie);
@@ -181,7 +186,7 @@ public class VehiculoFragment extends Fragment {
 
             Font font = FontFactory.getFont(FontFactory.HELVETICA, "", 28, Color.BLACK);
             // Añadimos un titulo con la fuente por defecto.
-            Paragraph p = new Paragraph("Empleados", font);
+            Paragraph p = new Paragraph("Proveedores", font);
             p.setAlignment(Element.ALIGN_CENTER);
             documento.add(p);
 
@@ -189,15 +194,23 @@ public class VehiculoFragment extends Fragment {
             PdfPTable tabla = new PdfPTable(4);
             tabla.addCell("Clave");
             tabla.addCell("Nombre");
-            tabla.addCell("Marca");
-            tabla.addCell("Modelo");
-            tabla.addCell("Costo");
+            tabla.addCell("Calle");
+            tabla.addCell("Colonia");
+            tabla.addCell("Ciudad");
+            tabla.addCell("RFC");
+            tabla.addCell("Teléfono");
+            tabla.addCell("Correo electrónico");
+            tabla.addCell("Saldo");
             for (int i = 0; i < lista.size(); i++) {
                 tabla.addCell(lista.get(i).clave);
                 tabla.addCell(lista.get(i).nombre);
-                tabla.addCell(lista.get(i).marca);
-                tabla.addCell(lista.get(i).modelo);
-                tabla.addCell(lista.get(i).costo);
+                tabla.addCell(lista.get(i).calle);
+                tabla.addCell(lista.get(i).colonia);
+                tabla.addCell(lista.get(i).ciudad);
+                tabla.addCell(lista.get(i).rfc);
+                tabla.addCell(lista.get(i).telefono);
+                tabla.addCell(lista.get(i).email);
+                tabla.addCell(lista.get(i).saldo);
             }
             documento.add(tabla);
 
@@ -240,15 +253,17 @@ public class VehiculoFragment extends Fragment {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
     }
 
-    public class Vehiculo {
+
+    public class Proveedor {
         String clave;
         String nombre;
-        String modelo;
-        String marca;
-        String costo;
-
-        public Vehiculo() {
-        }
+        String calle;
+        String colonia;
+        String ciudad;
+        String rfc;
+        String telefono;
+        String email;
+        String saldo;
 
         public String getClave() {
             return clave;
@@ -266,28 +281,63 @@ public class VehiculoFragment extends Fragment {
             this.nombre = nombre;
         }
 
-        public String getModelo() {
-            return modelo;
+        public String getCalle() {
+            return calle;
         }
 
-        public void setModelo(String modelo) {
-            this.modelo = modelo;
+        public void setCalle(String calle) {
+            this.calle = calle;
         }
 
-        public String getMarca() {
-            return marca;
+        public String getColonia() {
+            return colonia;
         }
 
-        public void setMarca(String marca) {
-            this.marca = marca;
+        public void setColonia(String colonia) {
+            this.colonia = colonia;
         }
 
-        public String getCosto() {
-            return costo;
+        public String getCiudad() {
+            return ciudad;
         }
 
-        public void setCosto(String costo) {
-            this.costo = costo;
+        public void setCiudad(String ciudad) {
+            this.ciudad = ciudad;
+        }
+
+        public String getRfc() {
+            return rfc;
+        }
+
+        public void setRfc(String rfc) {
+            this.rfc = rfc;
+        }
+
+        public String getTelefono() {
+            return telefono;
+        }
+
+        public void setTelefono(String telefono) {
+            this.telefono = telefono;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getSaldo() {
+            return saldo;
+        }
+
+        public void setSaldo(String saldo) {
+            this.saldo = saldo;
+        }
+
+        public Proveedor() {
         }
     }
 }

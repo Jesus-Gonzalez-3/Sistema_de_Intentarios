@@ -18,8 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClienteActivity extends AppCompatActivity {
-    private Button btnAgregar;
-    private TextInputEditText etClaveC, etNombreC, etDomicilio, etFechaRegistro;
+    private Button btnAgregarC;
+    private TextInputEditText etNombreC, etCalleC, etColoniaC, etCiudadC, etRfcC, etTelefonoC, etEmailC;
     private SQLiteDatabase db;
 
     @Override
@@ -27,24 +27,23 @@ public class ClienteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente);
 
-        etClaveC = this.findViewById(R.id.etClaveC);
         etNombreC = this.findViewById(R.id.etNombreC);
-        etDomicilio = this.findViewById(R.id.etDomicilio);
-        etFechaRegistro = this.findViewById(R.id.etFechaRegistro);
+        etCalleC = this.findViewById(R.id.etCalleC);
+        etColoniaC = this.findViewById(R.id.etColoniaC);
+        etCiudadC = this.findViewById(R.id.etCiudadC);
+        etRfcC = this.findViewById(R.id.etRfcC);
+        etTelefonoC = this.findViewById(R.id.etTelefonoC);
+        etEmailC = this.findViewById(R.id.etEmailC);
 
-        btnAgregar = this.findViewById(R.id.btnGuardarC);
-        Date date = new Date();
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-        etFechaRegistro.setText(fecha.format(date).toString());
-        etFechaRegistro.setEnabled(false);
+        btnAgregarC = this.findViewById(R.id.btnGuardarC);
 
         try {
-            db = openOrCreateDatabase("CotizacionesDB", Context.MODE_PRIVATE, null);
+            db = openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
         } catch (Exception ex) {
             showMessage("Error", ex.getMessage());
         }
 
-        btnAgregar.setOnClickListener(new View.OnClickListener() {
+        btnAgregarC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -57,14 +56,24 @@ public class ClienteActivity extends AppCompatActivity {
     }
 
     public void agregar() {
-        if (etClaveC.getText().toString().trim().length() != 0
-                && etNombreC.getText().toString().trim().length() != 0
-                && etDomicilio.getText().toString().trim().length() != 0
-                && etFechaRegistro.getText().toString().trim().length() != 0) {
+        String saldo = "0";
+        if (etNombreC.getText().toString().trim().length() != 0
+                && etCalleC.getText().toString().trim().length() != 0
+                && etColoniaC.getText().toString().trim().length() != 0
+                && etCiudadC.getText().toString().trim().length() != 0
+                && etRfcC.getText().toString().trim().length() != 0
+                && etTelefonoC.getText().toString().trim().length() != 0
+                && etEmailC.getText().toString().trim().length() != 0) {
             try {
-                db.execSQL("INSERT INTO cliente VALUES('" + etClaveC.getText() + "','"
-                        + etNombreC.getText() + "','" + etDomicilio.getText() + "','" +
-                        etFechaRegistro.getText() + "');");
+                db.execSQL("INSERT INTO cliente(nombre,calle,colonia,ciudad, rfc, telefono,email, saldo) VALUES(" +
+                        "'" + etNombreC.getText() + "'," +
+                        "'" + etCalleC.getText() + "'," +
+                        "'"+ etColoniaC.getText() + "'," +
+                        "'" + etCiudadC.getText() + "'," +
+                        "'" + etRfcC.getText() + "'," +
+                        "'" + etTelefonoC.getText() + "'," +
+                        "'" + etEmailC.getText() + "'," +
+                        "'" + saldo + "');");
                 showMessage("Exito!", "Cliente agregado");
                 finish();
             }catch (Exception ex) {

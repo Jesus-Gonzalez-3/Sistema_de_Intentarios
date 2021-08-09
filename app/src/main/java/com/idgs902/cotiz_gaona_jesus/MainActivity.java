@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
                     "id INTEGER PRIMARY KEY, nombre Varchar, calle Varchar, colonia Varchar, telefono Varchar, email Varchar, comisiones Varchar);");
             db.execSQL("CREATE TABLE IF NOT EXISTS producto (" +
                     "id INTEGER PRIMARY KEY, clave Varchar, nombre Varchar, linea Varchar, existencia Varchar, Pcosto Varchar, PCpromedio Varchar, PMenudeo Varchar, PMayoreo Varchar);");
+            db.execSQL("CREATE TABLE IF NOT EXISTS cliente (" +
+                    "id INTEGER PRIMARY KEY, nombre Varchar, calle Varchar, colonia Varchar, ciudad Varchar, rfc Varchar, telefono Varchar, email Varchar, saldo Varchar);");
+            db.execSQL("CREATE TABLE IF NOT EXISTS proveedor (" +
+                    "id INTEGER PRIMARY KEY, nombre Varchar, calle Varchar, colonia Varchar, ciudad Varchar, rfc Varchar, telefono Varchar, email Varchar, saldo Varchar);");
         } catch (Exception ex) {
             showMessage("Error", ex.getMessage());
         }

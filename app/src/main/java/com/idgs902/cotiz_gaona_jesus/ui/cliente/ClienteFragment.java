@@ -79,7 +79,7 @@ public class ClienteFragment extends Fragment {
         txtC = root.findViewById(R.id.txtC);
 
         try {
-            db = getActivity().openOrCreateDatabase("CotizacionesDB", Context.MODE_PRIVATE, null);
+            db = getActivity().openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
 
             Cursor c = db.rawQuery("SELECT * FROM cliente;", null);
             if (c.getCount() != 0) {
@@ -90,8 +90,13 @@ public class ClienteFragment extends Fragment {
                     Cliente cli = new Cliente();
                     cli.setClave(c.getString(0));
                     cli.setNombre(c.getString(1));
-                    cli.setDireccion(c.getString(2));
-                    cli.setFecha(c.getString(3));
+                    cli.setCalle(c.getString(2));
+                    cli.setColonia(c.getString(3));
+                    cli.setCiudad(c.getString(4));
+                    cli.setRfc(c.getString(5));
+                    cli.setTelefono(c.getString(6));
+                    cli.setEmail(c.getString(7));
+                    cli.setSaldo(c.getString(8));
 
                     lista.add(cli);
                     for (int j = 0; j < c.getColumnCount(); j++) {
@@ -184,9 +189,9 @@ public class ClienteFragment extends Fragment {
 
             // Incluimos el pie de pagina y una cabecera
             HeaderFooter cabecera = new HeaderFooter(new Phrase(
-                    "Cotizaciones Jesus Gaona"), false);
+                    "Sistema de Inventarios Zapateria Jessi"), false);
             HeaderFooter pie = new HeaderFooter(new Phrase(
-                    "Desarrollo Para Dispositivos Inteligentes \t\t\t  "), false);
+                    "Desarrollado por: \t Jessica Anahi Muñoz\t Jesus Guadalupe Gaona\t  "), false);
 
             documento.setHeader(cabecera);
             documento.setFooter(pie);
@@ -204,13 +209,23 @@ public class ClienteFragment extends Fragment {
             PdfPTable tabla = new PdfPTable(4);
             tabla.addCell("Clave");
             tabla.addCell("Nombre");
-            tabla.addCell("Dirección");
-            tabla.addCell("Fecha Registro");
+            tabla.addCell("Calle");
+            tabla.addCell("Colonia");
+            tabla.addCell("Ciudad");
+            tabla.addCell("RFC");
+            tabla.addCell("Teléfono");
+            tabla.addCell("Correo electrónico");
+            tabla.addCell("Saldo");
             for (int i = 0; i < lista.size(); i++) {
                 tabla.addCell(lista.get(i).clave);
                 tabla.addCell(lista.get(i).nombre);
-                tabla.addCell(lista.get(i).direccion);
-                tabla.addCell(lista.get(i).fecha);
+                tabla.addCell(lista.get(i).calle);
+                tabla.addCell(lista.get(i).colonia);
+                tabla.addCell(lista.get(i).ciudad);
+                tabla.addCell(lista.get(i).rfc);
+                tabla.addCell(lista.get(i).telefono);
+                tabla.addCell(lista.get(i).email);
+                tabla.addCell(lista.get(i).saldo);
             }
             documento.add(tabla);
 
@@ -256,8 +271,13 @@ public class ClienteFragment extends Fragment {
     public class Cliente {
         String clave;
         String nombre;
-        String direccion;
-        String fecha;
+        String calle;
+        String colonia;
+        String ciudad;
+        String rfc;
+        String telefono;
+        String email;
+        String saldo;
 
         public Cliente() {
         }
@@ -278,21 +298,62 @@ public class ClienteFragment extends Fragment {
             this.nombre = nombre;
         }
 
-        public String getDireccion() {
-            return direccion;
+        public String getCalle() {
+            return calle;
         }
 
-        public void setDireccion(String direccion) {
-            this.direccion = direccion;
+        public void setCalle(String calle) {
+            this.calle = calle;
         }
 
-        public String getFecha() {
-            return fecha;
+        public String getColonia() {
+            return colonia;
         }
 
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
+        public void setColonia(String colonia) {
+            this.colonia = colonia;
         }
+
+        public String getCiudad() {
+            return ciudad;
+        }
+
+        public void setCiudad(String ciudad) {
+            this.ciudad = ciudad;
+        }
+
+        public String getRfc() {
+            return rfc;
+        }
+
+        public void setRfc(String rfc) {
+            this.rfc = rfc;
+        }
+
+        public String getTelefono() {
+            return telefono;
+        }
+
+        public void setTelefono(String telefono) {
+            this.telefono = telefono;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getSaldo() {
+            return saldo;
+        }
+
+        public void setSaldo(String saldo) {
+            this.saldo = saldo;
+        }
+
     }
 
 }

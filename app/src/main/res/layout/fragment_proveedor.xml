@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.vehiculos.VehiculoFragment">
+    tools:context=".ui.vehiculos.ProveedorFragment">
 
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Listado de Vehiculos"
+        android:text="Listado de Proveedores"
         android:textSize="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -18,74 +18,83 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/InputLayoutBusqueda"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="250dp"
+        android:layout_width="800dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:hint="Clave"
+        android:layout_marginRight="100dp"
+        android:hint="No."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo">
-
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintEnd_toStartOf="@id/btnBuscarPr"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginLeft="10dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etBusquedaV"
+            android:id="@+id/etBusquedaPr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text|textAutoComplete|textMultiLine" />
+            android:inputType="text|textAutoComplete|textMultiLine"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnBuscarV"
+        android:id="@+id/btnBuscarPr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/orange"
-        android:text="Buscar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/InputLayoutBusqueda"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="100dp"
+        android:drawableLeft="@drawable/ic_search_white_18dp"
+        android:text="Buscar"
+        android:backgroundTint="@color/orange"
+        />
 
     <Button
-        android:id="@+id/btnReporteV"
+        android:id="@+id/btnReportePr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/bluestack"
         android:text="Generar Reporte"
+        android:drawableLeft="@drawable/ic_picture_as_pdf_white_18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBuscarV" />
+        app:layout_constraintTop_toBottomOf="@id/btnBuscarPr"
+        android:layout_marginLeft="100dp" />
     <Button
-        android:id="@+id/btnAgregarV"
+        android:id="@+id/btnAgregarPr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/green"
-        android:text="Agregar"
+        app:layout_constraintStart_toEndOf="@id/btnReportePr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBuscarV" />
+        app:layout_constraintTop_toBottomOf="@id/btnBuscarPr"
+        android:layout_marginTop="30dp"
+        android:text="Agregar"
+        android:drawableLeft="@drawable/ic_add_white_18dp"
+        android:backgroundTint="@color/green"
+        android:layout_marginLeft="700dp" />
 
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAgregarV">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/btnAgregarPr"
+        >
         <TextView
-            android:id="@+id/txtV"
+            android:id="@+id/txtPr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text=" " />
+            android:layout_marginTop="10dp"
+            android:text=" "
+            />
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

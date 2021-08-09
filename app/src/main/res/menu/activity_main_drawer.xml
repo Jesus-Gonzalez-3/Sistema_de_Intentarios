@@ -14,7 +14,7 @@
             android:title="@string/menu_gallery" />
         <item
             android:id="@+id/nav_vehiculos"
-            android:icon="@drawable/ic_directions_car_black_48dp"
+            android:icon="@drawable/ic_person_black_48dp"
             android:title="@string/menu_slideshow" />
         <item
             android:id="@+id/nav_cotizaciones"
