@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.cliente.ClienteActivity">
+    tools:context=".ui.vehiculos.ProveedorActivity">
 
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Clientes"
+        android:text="Proveedor"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutNombreC"
+                            android:id="@+id/InputLayoutNombrePr"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                             tools:ignore="NotSibling">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etNombreC"
+                                android:id="@+id/etNombrePr"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
@@ -72,7 +72,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutColoniaC"
+                            android:id="@+id/InputLayoutColoniaPr"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -81,18 +81,19 @@
                             android:layout_marginRight="40dp"
                             android:hint="Colonia"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutNombreC">
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutNombrePr">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etColoniaC"
+                                android:id="@+id/etColoniaPr"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:focusable="true"
                                 android:inputType="text|textAutoComplete"/>
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutRfcC"
+                            android:id="@+id/InputLayoutRfcPr"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -101,18 +102,19 @@
                             android:layout_marginRight="40dp"
                             android:hint="RFC"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutColoniaC">
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutColoniaPr">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etRfcC"
+                                android:id="@+id/etRfcPr"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:focusable="true"
                                 android:inputType="text|textAutoComplete"/>
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutEmailC"
+                            android:id="@+id/InputLayoutEmailPr"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -121,10 +123,10 @@
                             android:layout_marginRight="40dp"
                             android:hint="Correo electrónico"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutRfcC">
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutRfcPr">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etEmailC"
+                                android:id="@+id/etEmailPr"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
@@ -144,7 +146,7 @@
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutCalleC"
+                            android:id="@+id/InputLayoutCallePr"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -156,7 +158,7 @@
                             app:layout_constraintTop_toBottomOf="@id/llcampos">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etCalleC"
+                                android:id="@+id/etCallePr"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
@@ -165,7 +167,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutCiudadC"
+                            android:id="@+id/InputLayoutCiudadPr"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -174,19 +176,20 @@
                             android:layout_marginRight="40dp"
                             android:hint="Ciudad"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutCalleC"
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutCallePr"
                             tools:ignore="NotSibling">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etCiudadC"
+                                android:id="@+id/etCiudadPr"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:focusable="true"
                                 android:inputType="text|textAutoComplete" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutTelefonoC"
+                            android:id="@+id/InputLayoutTelefonoPr"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -195,10 +198,10 @@
                             android:layout_marginRight="40dp"
                             android:hint="Teléfono"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutCiudadC">
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutCiudadPr">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etTelefonoC"
+                                android:id="@+id/etTelefonoPr"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
@@ -210,7 +213,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnGuardarC"
+                android:id="@+id/btnGuardarPr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

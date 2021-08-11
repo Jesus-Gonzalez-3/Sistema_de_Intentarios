@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.cliente.ClienteActivity">
+    tools:context=".ui.vehiculos.ProveedorActivity2">
 
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Clientes"
+        android:text="Proveedores"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,98 +50,27 @@
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutNombreC"
+                            android:id="@+id/InputLayoutClave"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="40dp"
-                            android:hint="Nombre"
+                            android:hint="No."
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/llcampos"
                             tools:ignore="NotSibling">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etNombreC"
+                                android:id="@+id/etClavePRM"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
+                                android:enabled="false"
                                 android:focusable="true"
                                 android:inputType="text|textAutoComplete" />
                         </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutColoniaC"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="40dp"
-                            android:hint="Colonia"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutNombreC">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etColoniaC"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:focusable="true"
-                                android:inputType="text|textAutoComplete"/>
-                        </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutRfcC"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="40dp"
-                            android:hint="RFC"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutColoniaC">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etRfcC"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:focusable="true"
-                                android:inputType="text|textAutoComplete"/>
-                        </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/InputLayoutEmailC"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="40dp"
-                            android:hint="Correo electrónico"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/InputLayoutRfcC">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etEmailC"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:focusable="true"
-                                android:inputType="text|textAutoComplete"/>
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="600dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/InputLayoutCalleC"
@@ -153,10 +82,10 @@
                             android:layout_marginRight="40dp"
                             android:hint="Calle"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/llcampos">
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutClave">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etCalleC"
+                                android:id="@+id/etCallePRM"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
@@ -178,13 +107,14 @@
                             tools:ignore="NotSibling">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etCiudadC"
+                                android:id="@+id/etCiudadPRM"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:focusable="true"
                                 android:inputType="text|textAutoComplete" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/InputLayoutTelefonoC"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -198,29 +128,164 @@
                             app:layout_constraintTop_toBottomOf="@id/InputLayoutCiudadC">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etTelefonoC"
+                                android:id="@+id/etTelefonoPRM"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:focusable="true"
                                 android:inputType="text|textAutoComplete" />
                         </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/InputLayoutSaldo"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="40dp"
+                            android:hint="Saldo"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutTelefonoC"
+                            tools:ignore="NotSibling">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etSaldoPRM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:enabled="false"
+                                android:focusable="true"
+                                android:inputType="text|textAutoComplete" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="600dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/InputLayoutNombreC"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="40dp"
+                            android:hint="Nombre"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/llcampos"
+                            tools:ignore="NotSibling">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etNombrePRM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:focusable="true"
+                                android:inputType="text|textAutoComplete" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/InputLayoutColoniaC"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="40dp"
+                            android:hint="Colonia"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutNombreC">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etColoniaPRM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:focusable="true"
+                                android:inputType="text|textAutoComplete"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/InputLayoutRfcC"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="40dp"
+                            android:hint="RFC"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutColoniaC">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etRfcPRM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:focusable="true"
+                                android:inputType="text|textAutoComplete"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/InputLayoutEmailC"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="40dp"
+                            android:hint="Correo electrónico"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/InputLayoutRfcC">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etEmailPRM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:focusable="true"
+                                android:inputType="text|textAutoComplete"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnGuardarC"
+                android:id="@+id/btnModificarPR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/green"
-                android:text="Agregar"
-                android:drawableLeft="@drawable/ic_add_white_18dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="200dp"
+                android:backgroundTint="@color/orange"
+                android:text="Modificar"
+                android:drawableLeft="@drawable/ic_edit_white_18dp"
+                app:layout_constraintEnd_toStartOf="@id/btnEliminarPR"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llcampos" />
+
+            <Button
+                android:id="@+id/btnEliminarPR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="80dp"
+                android:backgroundTint="@color/red"
+                android:text="Eliminar"
+                android:drawableLeft="@drawable/ic_remove_white_18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnModificarPR"
                 app:layout_constraintTop_toBottomOf="@id/llcampos" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
