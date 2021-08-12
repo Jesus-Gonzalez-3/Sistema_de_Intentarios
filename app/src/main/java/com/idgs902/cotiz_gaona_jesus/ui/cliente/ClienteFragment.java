@@ -206,8 +206,8 @@ public class ClienteFragment extends Fragment {
             documento.add(p);
 
             // Insertamos una tabla.
-            PdfPTable tabla = new PdfPTable(4);
-            tabla.addCell("Clave");
+            PdfPTable tabla = new PdfPTable(9);
+            tabla.addCell("No.");
             tabla.addCell("Nombre");
             tabla.addCell("Calle");
             tabla.addCell("Colonia");

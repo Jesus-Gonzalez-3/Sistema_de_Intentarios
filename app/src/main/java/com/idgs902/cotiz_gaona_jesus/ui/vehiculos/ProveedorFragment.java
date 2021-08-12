@@ -48,7 +48,7 @@ public class ProveedorFragment extends Fragment {
     static final String DATOS = "Datos";
     private FragmentProveedorBinding binding;
     private final static String NOMBRE_DIRECTORIO = "MiPdf";
-    private final static String NOMBRE_DOCUMENTO = "Vehiculos.pdf";
+    private final static String NOMBRE_DOCUMENTO = "Proveedor.pdf";
     private final static String ETIQUETA_ERROR = "ERROR";
 
     private static boolean creado = false;
@@ -191,8 +191,8 @@ public class ProveedorFragment extends Fragment {
             documento.add(p);
 
             // Insertamos una tabla.
-            PdfPTable tabla = new PdfPTable(4);
-            tabla.addCell("Clave");
+            PdfPTable tabla = new PdfPTable(9);
+            tabla.addCell("No");
             tabla.addCell("Nombre");
             tabla.addCell("Calle");
             tabla.addCell("Colonia");
