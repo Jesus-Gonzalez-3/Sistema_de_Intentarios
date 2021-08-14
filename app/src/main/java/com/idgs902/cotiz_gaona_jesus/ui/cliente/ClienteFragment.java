@@ -118,7 +118,7 @@ public class ClienteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), ClienteActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 1, new Bundle());
             }
         });
 
@@ -130,7 +130,7 @@ public class ClienteFragment extends Fragment {
                         Intent i = new Intent(getContext(), ClienteActivity2.class);
 
                         i.putExtra(DATOS, etBusquedaC.getText().toString());
-                        startActivity(i);
+                        startActivityForResult(i, 1, new Bundle());
                     } else {
                         showMessage("Error", "Tiene que ingresar una clave para busqueda");
                     }
@@ -169,6 +169,47 @@ public class ClienteFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        txtC.setText(" ");
+        lista.clear();
+        try {
+            db = getActivity().openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
+
+            Cursor c = db.rawQuery("SELECT * FROM cliente;", null);
+            if (c.getCount() != 0) {
+                c.moveToFirst();
+                StringBuilder cadena = new StringBuilder();
+
+                for (int i = 0; i < c.getCount(); i++) {
+                    Cliente cli = new Cliente();
+                    cli.setClave(c.getString(0));
+                    cli.setNombre(c.getString(1));
+                    cli.setCalle(c.getString(2));
+                    cli.setColonia(c.getString(3));
+                    cli.setCiudad(c.getString(4));
+                    cli.setRfc(c.getString(5));
+                    cli.setTelefono(c.getString(6));
+                    cli.setEmail(c.getString(7));
+                    cli.setSaldo(c.getString(8));
+
+                    lista.add(cli);
+                    for (int j = 0; j < c.getColumnCount(); j++) {
+                        cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
+                    }
+                    cadena.append('\n');
+                    cadena.append('\n');
+                    c.moveToNext();
+                }
+                txtC.setText(cadena);
+
+            }
+        } catch (
+                Exception ex) {
+            showMessage("Error", ex.getMessage());
+        }
+    }
 
     public void generarPdf() {
 
@@ -206,7 +247,7 @@ public class ClienteFragment extends Fragment {
             documento.add(p);
 
             // Insertamos una tabla.
-            PdfPTable tabla = new PdfPTable(4);
+            PdfPTable tabla = new PdfPTable(9);
             tabla.addCell("Clave");
             tabla.addCell("Nombre");
             tabla.addCell("Calle");
