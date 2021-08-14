@@ -24,5 +24,9 @@
             android:id="@+id/nav_clientes"
             android:icon="@drawable/ic_assignment_ind_black_48dp"
             android:title="Clientes" />
+        <item
+            android:id="@+id/nav_compras"
+            android:icon="@drawable/ic_add_shopping_cart_black_48dp"
+            android:title="@string/menu_compras" />
     </group>
 </menu>

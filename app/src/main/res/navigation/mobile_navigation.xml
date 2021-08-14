@@ -31,4 +31,9 @@
         android:name="com.idgs902.cotiz_gaona_jesus.ui.cliente.ClienteFragment"
         android:label="Clientes"
         tools:layout="@layout/fragment_cliente" />
+    <fragment
+        android:id="@+id/nav_compras"
+        android:name="com.idgs902.cotiz_gaona_jesus.ui.compras.ComprasFragment"
+        android:label="@string/menu_compras"
+        tools:layout="@layout/compras_fragment" /><action android:id="@+id/action_global_nav_compras" app:destination="@id/nav_compras"/>
 </navigation>

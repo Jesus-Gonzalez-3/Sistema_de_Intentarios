@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -48,7 +49,7 @@ public class ProveedorFragment extends Fragment {
     static final String DATOS = "Datos";
     private FragmentProveedorBinding binding;
     private final static String NOMBRE_DIRECTORIO = "MiPdf";
-    private final static String NOMBRE_DOCUMENTO = "Proveedor.pdf";
+    private final static String NOMBRE_DOCUMENTO = "Vehiculos.pdf";
     private final static String ETIQUETA_ERROR = "ERROR";
 
     private static boolean creado = false;
@@ -104,7 +105,7 @@ public class ProveedorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), ProveedorActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 1, new Bundle());
             }
         });
 
@@ -128,7 +129,7 @@ public class ProveedorFragment extends Fragment {
                         Intent i = new Intent(getContext(), ProveedorActivity2.class);
 
                         i.putExtra(DATOS, etBusquedaP.getText().toString());
-                        startActivity(i);
+                        startActivityForResult(i,1,new Bundle());
                     } else {
                         showMessage("Error", "Tiene que ingresar una No. para busqueda");
                     }
@@ -153,6 +154,48 @@ public class ProveedorFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        txtP.setText(" ");
+        lista.clear();
+        try {
+            db = getActivity().openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
+
+            Cursor c = db.rawQuery("SELECT * FROM proveedor;", null);
+            if (c.getCount() != 0) {
+                c.moveToFirst();
+                StringBuilder cadena = new StringBuilder();
+
+                for (int i = 0; i < c.getCount(); i++) {
+                    Proveedor prv = new Proveedor();
+                    prv.setClave(c.getString(0));
+                    prv.setNombre(c.getString(1));
+                    prv.setCalle(c.getString(2));
+                    prv.setColonia(c.getString(3));
+                    prv.setCiudad(c.getString(4));
+                    prv.setRfc(c.getString(5));
+                    prv.setTelefono(c.getString(6));
+                    prv.setEmail(c.getString(7));
+                    prv.setSaldo(c.getString(8));
+
+                    lista.add(prv);
+                    for (int j = 0; j < c.getColumnCount(); j++) {
+                        cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
+                    }
+                    cadena.append('\n');
+                    cadena.append('\n');
+                    c.moveToNext();
+                }
+                txtP.setText(cadena);
+
+            }
+        } catch (
+                Exception ex) {
+            showMessage("Error", ex.getMessage());
+        }
     }
 
     public void generarPdf() {
@@ -192,7 +235,7 @@ public class ProveedorFragment extends Fragment {
 
             // Insertamos una tabla.
             PdfPTable tabla = new PdfPTable(9);
-            tabla.addCell("No");
+            tabla.addCell("Clave");
             tabla.addCell("Nombre");
             tabla.addCell("Calle");
             tabla.addCell("Colonia");
