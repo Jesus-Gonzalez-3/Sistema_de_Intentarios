@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     "id INTEGER PRIMARY KEY, nombre Varchar, calle Varchar, colonia Varchar, ciudad Varchar, rfc Varchar, telefono Varchar, email Varchar, saldo Varchar);");
             db.execSQL("CREATE TABLE IF NOT EXISTS compras ("+
                     "id INTEGER PRIMARY KEY, clave Varchar, clave_p Varchar, nombre_p Varchar," +
-                    "calle_p Varchar,fecha Varchar, total_pares Varchar, subtotal Varchar, iva Varchar, total Varchar, tipo_recibo Varchar);");
+                    "calle_p Varchar,fecha Varchar, total_pares Varchar, subtotal Varchar, iva Varchar, total Varchar, tipo_recibo Varchar, clave_recibo Varchar);");
             db.execSQL("CREATE TABLE IF NOT EXISTS compras_detalle ("+
                     "id INTEGER PRIMARY KEY, id_compra INTEGER, clave_pro Varchar, nombre_pro Varchar," +
                     "unidad Varchar,linea Varchar, cantidad_pro Varchar, costo_pro Varchar, importe Varchar);");

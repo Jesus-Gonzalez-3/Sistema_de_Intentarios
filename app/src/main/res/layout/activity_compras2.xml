@@ -21,9 +21,9 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintTop_toBottomOf="@id/tvTitulo">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -230,7 +230,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toBottomOf="@id/llcampos"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
                 <ScrollView
                     android:layout_width="match_parent"
@@ -240,13 +240,63 @@
                         android:layout_height="wrap_content"
                         android:fillViewport="true">
                         <TableLayout
-                            android:id="@+id/table"
+                            android:id="@+id/tableM"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent">
                         </TableLayout>
                     </HorizontalScrollView>
                 </ScrollView>
             </LinearLayout>
+            <TextView
+                android:id="@+id/tvSumaM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/ll3"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginTop="10dp"
+                android:text="SUMA: $"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/tvIVAM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvSumaM"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:text="I.V.A : $"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/tvTotalM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvIVAM"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:text="TOTAL : $"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/tvTotalParesM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/ll3"
+                app:layout_constraintEnd_toStartOf="@id/tvSumaM"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:text="Total Pares: "
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                />
 
             <Button
                 android:id="@+id/btnEliminarComp"
@@ -258,7 +308,7 @@
                 android:drawableLeft="@drawable/ic_remove_white_18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll3"/>
+                app:layout_constraintTop_toBottomOf="@id/tvTotalM"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

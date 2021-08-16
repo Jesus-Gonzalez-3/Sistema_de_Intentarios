@@ -48,6 +48,8 @@ public class ProductosActivity2 extends AppCompatActivity {
 
     private static boolean creado = false;
 
+    DecimalFormat format = new DecimalFormat("#.##");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,9 +91,9 @@ public class ProductosActivity2 extends AppCompatActivity {
                     txtLineaM.setText(c.getString(3));
                     etExistenciasM.setText(c.getString(4));
                     txtCostoPM.setText(c.getString(5));
-                    etCostoPromM.setText(c.getString(6));
-                    txtVentaMenudeoM.setText(c.getString(7));
-                    etCostoMayoreoM.setText(c.getString(8));
+                    etCostoPromM.setText(format.format(Double.parseDouble(c.getString(6))));
+                    txtVentaMenudeoM.setText(format.format(Double.parseDouble(c.getString(7))));
+                    etCostoMayoreoM.setText(format.format(Double.parseDouble(c.getString(8))));
                 }
             } else {
                 showMessage("Info", "No existe un Registro con esa clave");

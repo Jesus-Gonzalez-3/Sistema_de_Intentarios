@@ -40,6 +40,11 @@ public class ProductosActivity extends AppCompatActivity {
 
         try {
             db = openOrCreateDatabase("SistemaInventariosDB", Context.MODE_PRIVATE, null);
+            etExistencias.setEnabled(false);
+            txtCostoP.setEnabled(false);
+            txtVentaMenudeo.setEnabled(false);
+            etCostoMayoreo.setEnabled(false);
+            etCostoProm.setEnabled(false);
         } catch (Exception ex) {
             showMessage("Error", ex.getMessage());
         }
