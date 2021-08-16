@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.idgs902.cotiz_gaona_jesus.R;
+import com.idgs902.cotiz_gaona_jesus.ui.cotizacion.ProductosActivity2;
 import com.idgs902.cotiz_gaona_jesus.ui.cotizacion.ProductosFragment;
 import com.idgs902.cotiz_gaona_jesus.ui.empleados.VendedoresFragment;
 import com.lowagie.text.Document;
@@ -93,7 +94,7 @@ public class ComprasFragment extends Fragment {
                     com.setIva(c.getString(8));
                     com.setTotal(c.getString(9));
                     com.setTipo_recibo(c.getString(10));
-
+                    com.setClave_recibo(c.getString(11));
                     lista.add(com);
                     for (int j = 0; j < c.getColumnCount(); j++) {
                         cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
@@ -131,7 +132,30 @@ public class ComprasFragment extends Fragment {
                 }
             }
         });
+
+        btnBuscarCom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                 buscarCompra();
+                }catch (Exception ex) {
+                    showMessage("Error", ex.getMessage());
+                }
+            }
+        });
+
         return root;
+    }
+
+    public void buscarCompra(){
+        if(etBusquedaCom.getText().toString().trim().length()!=0){
+            Intent i = new Intent(getContext(), ComprasActivity2.class);
+
+            i.putExtra(DATOS, etBusquedaCom.getText().toString());
+            startActivityForResult(i,1,new Bundle());
+        }else {
+            showMessage("Info", "Debe Ingresar una clave a buscar");
+        }
     }
 
     @Override
@@ -159,7 +183,7 @@ public class ComprasFragment extends Fragment {
                     com.setIva(c.getString(8));
                     com.setTotal(c.getString(9));
                     com.setTipo_recibo(c.getString(10));
-
+                    com.setClave_recibo(c.getString(11));
                     lista.add(com);
                     for (int j = 0; j < c.getColumnCount(); j++) {
                         cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
@@ -209,12 +233,12 @@ public class ComprasFragment extends Fragment {
 
             Font font = FontFactory.getFont(FontFactory.HELVETICA, "", 28, Color.BLACK);
             // Añadimos un titulo con la fuente por defecto.
-            Paragraph p = new Paragraph("Compras A Proveedores", font);
+            Paragraph p = new Paragraph("Compras A Proveedores\n\n", font);
             p.setAlignment(Element.ALIGN_CENTER);
             documento.add(p);
 
             // Insertamos una tabla.
-            PdfPTable tabla = new PdfPTable(8);
+            PdfPTable tabla = new PdfPTable(9);
             tabla.addCell("Clave");
             tabla.addCell("Clave Proveedor");
             tabla.addCell("Nombre Proveedor");
@@ -223,6 +247,7 @@ public class ComprasFragment extends Fragment {
             tabla.addCell("Total Pares");
             tabla.addCell("Total $");
             tabla.addCell("Tipo Recibo");
+            tabla.addCell("Clave Recibo");
             for (int i = 0; i < lista.size(); i++) {
                 tabla.addCell(lista.get(i).clave);
                 tabla.addCell(lista.get(i).clave_p);
@@ -232,6 +257,7 @@ public class ComprasFragment extends Fragment {
                 tabla.addCell(lista.get(i).total_pares);
                 tabla.addCell(lista.get(i).total);
                 tabla.addCell(lista.get(i).tipo_recibo);
+                tabla.addCell(lista.get(i).clave_recibo);
             }
             documento.add(tabla);
 
@@ -272,7 +298,15 @@ public class ComprasFragment extends Fragment {
     }
 
     public class Compras {
-        String id, clave, clave_p, nombre_p, calle_p, fecha, total_pares, subtotal, iva, total, tipo_recibo;
+        String id, clave, clave_p, nombre_p, calle_p, fecha, total_pares, subtotal, iva, total, tipo_recibo, clave_recibo;
+
+        public String getClave_recibo() {
+            return clave_recibo;
+        }
+
+        public void setClave_recibo(String clave_recibo) {
+            this.clave_recibo = clave_recibo;
+        }
 
         public String getId() {
             return id;
