@@ -36,4 +36,9 @@
         android:name="com.idgs902.cotiz_gaona_jesus.ui.compras.ComprasFragment"
         android:label="@string/menu_compras"
         tools:layout="@layout/compras_fragment" /><action android:id="@+id/action_global_nav_compras" app:destination="@id/nav_compras"/>
+    <fragment
+        android:id="@+id/nav_ventas"
+        android:name="com.idgs902.cotiz_gaona_jesus.ui.ventas.VentaFragment"
+        android:label="@string/menu_ventas"
+        tools:layout="@layout/venta_fragment" />
 </navigation>

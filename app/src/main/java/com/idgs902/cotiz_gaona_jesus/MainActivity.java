@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_clientes, R.id.nav_empleado, R.id.nav_vehiculos, R.id.nav_cotizaciones, R.id.nav_compras)
+                R.id.nav_home, R.id.nav_clientes, R.id.nav_empleado, R.id.nav_vehiculos, R.id.nav_cotizaciones, R.id.nav_compras, R.id.nav_ventas)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -81,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
             db.execSQL("CREATE TABLE IF NOT EXISTS compras_detalle ("+
                     "id INTEGER PRIMARY KEY, id_compra INTEGER, clave_pro Varchar, nombre_pro Varchar," +
                     "unidad Varchar,linea Varchar, cantidad_pro Varchar, costo_pro Varchar, importe Varchar);");
+            db.execSQL("CREATE TABLE IF NOT EXISTS ventas ("+
+                    "id INTEGER PRIMARY KEY, clave_cliente Varchar, nombre_cliente Varchar, calle_cliente Varchar," +
+                    "clave_vendedor Varchar,nombre_vendedor Varchar, fecha Varchar, comision Varchar, tipo_recibo Varchar, clave_recibo Varchar, total_productos Varchar, suma Varchar, iva Varchar, total_venta Varchar, comision_vendedor Varchar);");
+            db.execSQL("CREATE TABLE IF NOT EXISTS ventas_detalle ("+
+                    "id INTEGER PRIMARY KEY, id_venta INTEGER, clave_pro Varchar, nombre_pro Varchar," +
+                    "unidad Varchar,linea Varchar, cantidad_pro Varchar, pre_venta Varchar, importe Varchar);");
         } catch (Exception ex) {
             showMessage("Error", ex.getMessage());
         }
