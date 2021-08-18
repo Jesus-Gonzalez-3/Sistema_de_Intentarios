@@ -15,4 +15,5 @@
     <string name="nav_header_body">Jessica Anahí Muñoz Y Jesús Gpe Gaona </string>
     <string name="menu_compras">Compras</string>
     <string name="menu_ventas">Ventas</string>
+    <string name="nav_reporteVentasDia">Reporte de Ventas (Facturas)</string>
 </resources>

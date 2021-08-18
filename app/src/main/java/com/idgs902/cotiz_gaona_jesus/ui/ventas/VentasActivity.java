@@ -206,6 +206,7 @@ public class VentasActivity extends AppCompatActivity {
                         det.setPventa(c.getString(6));
                         det.setImporte(String.valueOf(subtotal));
                         lista.add(det);
+
                         TotalParesTabla += Integer.parseInt(txtCantidadProducto.getText().toString());
                         SubtotalTabla += subtotal;
                         IvaTabla = (SubtotalTabla * 0.16);
@@ -300,6 +301,7 @@ public class VentasActivity extends AppCompatActivity {
                                             "' Where id ="+item.id+";");
                                 }
                             }
+
                             Cursor c2 = db.rawQuery("SELECT * FROM cliente where id='" + etClaveCliente.getText().toString() + "'", null);
                             if (c2.getCount() != 0) {
                                 c2.moveToFirst();
@@ -314,7 +316,7 @@ public class VentasActivity extends AppCompatActivity {
                             Cursor c3 = db.rawQuery("SELECT * FROM vendedor where id='" + etClaveVendedor.getText().toString() + "'", null);
                             c3.moveToFirst();
                             int vendedor_id = c3.getInt(0);
-                            double comisiones_vendedor = Integer.parseInt(c3.getString(6)) + TotalComisiones;
+                            double comisiones_vendedor = Double.parseDouble(c3.getString(6)) + TotalComisiones;
                             Log.i("Vendedor id ", "" + vendedor_id);
                             Log.i("Saldo id ", "" + TotalComisiones);
                             db.execSQL("UPDATE vendedor SET comisiones='"+comisiones_vendedor+
