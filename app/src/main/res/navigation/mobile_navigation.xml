@@ -41,4 +41,9 @@
         android:name="com.idgs902.cotiz_gaona_jesus.ui.ventas.VentaFragment"
         android:label="@string/menu_ventas"
         tools:layout="@layout/venta_fragment" />
+    <fragment
+        android:id="@+id/nav_reporte_productos"
+        android:name="com.idgs902.cotiz_gaona_jesus.ui.reporte_venta_producto.ReporteProductoFragment"
+        android:label="@string/menu_reporte_producto"
+        tools:layout="@layout/reporte_producto_fragment" />
 </navigation>
