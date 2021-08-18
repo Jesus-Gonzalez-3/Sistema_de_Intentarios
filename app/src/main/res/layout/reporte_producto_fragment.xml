@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.reporte_venta_producto.ReporteProductoFragment">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Reporte de productos en una venta"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputuno"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:hint="Fecha Inicio">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtFechaInicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textAutoComplete|textMultiLine" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputdos"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:hint="Fecha Inicio">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtFechaFin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textAutoComplete|textMultiLine" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnGenerarReporte"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/bluestack"
+            android:drawableLeft="@drawable/ic_picture_as_pdf_white_18dp"
+            android:text="Generar reporte" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
