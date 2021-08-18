@@ -150,6 +150,51 @@ public class VentaFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        txtVenta.setText("");
+        lista.clear();
+        try {
+            Cursor c = db.rawQuery("SELECT * FROM ventas;", null);
+            if (c.getCount() != 0) {
+                c.moveToFirst();
+                StringBuilder cadena = new StringBuilder();
+
+                for (int i = 0; i < c.getCount(); i++) {
+
+                    Venta v = new Venta();
+                    v.setId(c.getString(0));
+                    v.setClave_cliente(c.getString(0));
+                    v.setNombre_cliente(c.getString(0));
+                    v.setCalle_cliente(c.getString(1));
+                    v.setClave_vendedor(c.getString(1));
+                    v.setNombre_vendedor(c.getString(1));
+                    v.setFecha(c.getString(2));
+                    v.setComision(c.getString(1));
+                    v.setTipo_recibo(c.getString(2));
+                    v.setClave_recibo(c.getString(3));
+                    v.setTotal_productos(c.getString(3));
+                    v.setSuma(c.getString(2));
+                    v.setIva(c.getString(2));
+                    v.setTotal_venta(c.getString(2));
+                    v.setComis_vendedor(c.getString(3));
+                    lista.add(v);
+                    for (int j = 0; j < c.getColumnCount(); j++) {
+                        cadena.append(c.getColumnName(j) + ": " + c.getString(j) + "\t \t");
+                    }
+                    cadena.append('\n');
+                    cadena.append('\n');
+                    c.moveToNext();
+                }
+                txtVenta.setText(cadena);
+
+            }
+        } catch (Exception ex) {
+            showMessage("Error", ex.getMessage());
+        }
+    }
+
     public void buscarVenta(){
         if(etBusquedaVenta.getText().toString().trim().length()!=0){
             Intent i = new Intent(getContext(), VentasActivity2.class);

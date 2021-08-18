@@ -210,7 +210,7 @@ public class VentasActivity extends AppCompatActivity {
                         SubtotalTabla += subtotal;
                         IvaTabla = (SubtotalTabla * 0.16);
                         TotalFinalTabla = SubtotalTabla + IvaTabla;
-                        TotalComisiones = TotalFinalTabla * Integer.parseInt(etComision.getText().toString()) / 100;
+                        TotalComisiones = TotalFinalTabla * Double.parseDouble(etComision.getText().toString()) / 100;
 
                         txtTotalPares.setText("TOTAL DE PARES : " + format.format(TotalParesTabla).toString());
                         txtIva.setText("I.V.A : $" + format.format(IvaTabla).toString());
@@ -314,7 +314,7 @@ public class VentasActivity extends AppCompatActivity {
                             Cursor c3 = db.rawQuery("SELECT * FROM vendedor where id='" + etClaveVendedor.getText().toString() + "'", null);
                             c3.moveToFirst();
                             int vendedor_id = c3.getInt(0);
-                            double comisiones_vendedor = Integer.parseInt(c3.getString(6)) + TotalComisiones;
+                            double comisiones_vendedor = Double.parseDouble(c3.getString(6)) + TotalComisiones;
                             Log.i("Vendedor id ", "" + vendedor_id);
                             Log.i("Saldo id ", "" + TotalComisiones);
                             db.execSQL("UPDATE vendedor SET comisiones='"+comisiones_vendedor+
