@@ -41,7 +41,7 @@ public class VentasActivity extends AppCompatActivity {
     private TableDynamic tableDynamic;
     private String[] headers = {"Clave", "Descripción", "Unidad", "Linea", "Cantidad", "PVenta", "Importe"};
     private ArrayList<String[]> rows = new ArrayList<>();
-    //private List<ComprasActivity.DetallesCompras> lista = new ArrayList<ComprasActivity.DetallesCompras>();
+    private List<ComprasActivity.DetallesCompras> lista = new ArrayList<ComprasActivity.DetallesCompras>();
     private String[] Recibos = {"Remision", "Factura"};
 
     private List<DetalleVentas> lista = new ArrayList<DetalleVentas>();

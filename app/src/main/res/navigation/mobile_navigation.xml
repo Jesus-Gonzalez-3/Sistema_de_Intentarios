@@ -42,8 +42,15 @@
         android:label="@string/menu_ventas"
         tools:layout="@layout/venta_fragment" />
     <fragment
+<<<<<<< HEAD
         android:id="@+id/nav_reporteVentasDia"
         android:name="com.idgs902.cotiz_gaona_jesus.ui.ReporteVentasDia.FragmentReporteVentasDia"
         android:label="@string/nav_reporteVentasDia"
         tools:layout="@layout/reporte_ventas_dia_fragment" />
+=======
+        android:id="@+id/nav_reporte_productos"
+        android:name="com.idgs902.cotiz_gaona_jesus.ui.reporte_venta_producto.ReporteProductoFragment"
+        android:label="@string/menu_reporte_producto"
+        tools:layout="@layout/reporte_producto_fragment" />
+>>>>>>> b693392e14d648e105d7f4d393a4d8d21240c1e7
 </navigation>
